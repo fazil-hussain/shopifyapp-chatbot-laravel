@@ -14,6 +14,11 @@ use Osiset\ShopifyApp\Messaging\Jobs\ScripttagInstaller;
 |
 */
 
+Route::get('/dropdown', function(){
+    return view('dropdown');
+});
+Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
+
 Route::get('/','App\Http\Controllers\StoreController@verify')->middleware(['auth.shopify']);
 // Route::get('/', function () {
 //     $user = auth::user();
@@ -23,11 +28,11 @@ Route::get('/','App\Http\Controllers\StoreController@verify')->middleware(['auth
 Route::POST('/addscripttag',[ScripttagController::class,'addscript'])->name('addscript');
 
 Route::GET('/allscripttags',[ScripttagController::class,'allscripttags'])->name('allscripttags');
-
-//-------------------App Status --------------//
-Route::POST('/changeapearance','App\Http\Controllers\SettingController@changeapearance')->middleware(['auth.shopify'])->name('changeapearance');
 //-------------------Change Appearance --------------//
 Route::post('/changeappstatus','App\Http\Controllers\SettingController@changeappstatus')->name('changeappstatus');
+//-------------------App Status --------------//
+Route::POST('/changeapearance','App\Http\Controllers\SettingController@changeapearance')->middleware(['auth.shopify'])->name('changeapearance');
+
 //-------------------Change Chat Option Status --------------//
 Route::post('/changechatoptstatus','App\Http\Controllers\SettingController@changechatoptstatus')->name('changechatoptstatus');
 //-------------------Chat Option Data --------------//
@@ -44,7 +49,17 @@ Route::post('/changecontactusoptions','App\Http\Controllers\SettingController@ch
 // Route::get("toastr-notification", "App\Http\Controllers\MessageNotificationController@showToastrMessages");
 
 /*================================================================================
-        Store Routes
+        Store Routess
 ===============================================================================*/
 Route::get('/appsettingsdata','App\Http\Controllers\ScripttagController@appsettingsdata')->name('appsettingsdata');
+Route::post('/getdetails','App\Http\Controllers\SettingController@getdetails')->name('getdetails');
+
+Route::post('/proxyrequest', 'App\Http\Controllers\SettingController@proxyrequest')->middleware(['auth.proxy'])->name('proxyrequest');
+Route::post('/proxyrequest/newsletter', 'App\Http\Controllers\SettingController@proxynewsletter')->middleware(['auth.proxy'])->name('proxynewsletter');
+Route::post('/testtt','App\Http\Controllers\SettingController@testtt')->name('testtt');
+
+/*================================================================================
+        News Letter Routes
+===============================================================================*/
+Route::get('/addnewsletter','App\Http\Controllers\NewsletterController@addnewsletter')->name('addnewsletter');
 

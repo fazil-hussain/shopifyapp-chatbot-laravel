@@ -1,12 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\AppSetting;
+use App\Models\Appsetting;
 use DB;
 use Illuminate\Http\Request;
 
+
 class SettingController extends Controller
 {
+    /**==================================
+    *  Change App Status
+    * ==================================*/
     public function changeappstatus(Request $request){
     $authuser = auth()->user();
     $users = Appsetting::where('store_name', '=', $authuser->name)->first();
@@ -16,6 +20,7 @@ class SettingController extends Controller
             // Data to pass to our rest api request
             $array = array('script_tag' => array('event' => 'onload', 'src' => $snippet));
             $tagapi = $authuser->api()->rest('POST', '/admin/api/2020-04/script_tags.json', $array);
+            // dd($tagapi);
             $tagid = ($tagapi['body']['script_tag'])->id;
 
             DB::table('appsettings')
@@ -26,6 +31,7 @@ class SettingController extends Controller
             $tagapi = $authuser->api()->rest('GET', '/admin/api/2021-10/script_tags.json');
             //  $scriptdata = $tagapi['body']['container']['script_tags'];
             $deltetag = $authuser->api()->rest('DELETE', '/admin/api/2021-10/script_tags/' .$users->app_script_tag. '.json');
+            // dd($deltetag);
             DB::table('appsettings')
             ->where('id', $users->id)
             ->update(['app_script_tag' => ""]);
@@ -40,6 +46,9 @@ class SettingController extends Controller
         // session()->flash("success", "This is success message");
 
     }
+    /**==================================
+    *  Change Chat Option Status
+    * ==================================*/
     public function changechatoptstatus(Request $request){
         $authuser = auth()->user();
         $users = Appsetting::where('store_name', '=', $authuser->name)->first();
@@ -51,6 +60,9 @@ class SettingController extends Controller
         // session()->flash("success", "This is success message");
 
     }
+    /**==================================
+    *  Change Apperance
+    * ==================================*/
 
     public function changeapearance(Request $request){
         $authuser = auth()->user();
@@ -65,6 +77,9 @@ class SettingController extends Controller
             return response('false');
         }
     }
+    /**==================================
+    *  Chat Optin Data
+    * ==================================*/
     public function chatoptiondata(Request $request){
 
         // dd($request->data);
@@ -84,6 +99,10 @@ class SettingController extends Controller
 
             }
     }
+
+    /**==================================
+    *  Question Data
+    * ==================================*/
     public function questionsdaatta(Request $request){
         $authuser = auth()->user();
         $users = Appsetting::where('store_name', '=', $authuser->name)->first();
@@ -145,5 +164,41 @@ class SettingController extends Controller
         return response(1);
     }
 
-    
+    public function getdetails(Request $request){
+        dd($request);
+    }
+    public function proxyrequest(Request $request){
+        $shop = $request->shop;
+        $appsettings = Appsetting::where('store_name', '=', $shop)->first();
+        // dd($appsettings->appstatus);
+        return response()->json($appsettings);
+    }
+
+    public function testtt(Request $request)
+    {
+        dd(request()->all());
+        // for ($i = 0; $i < $request->length; $i++) {
+        //     $data[] = [
+        //         'agent' => $request->agent,
+        //         'link' => $request->link,
+        //     ];
+        //     dd($data);
+        // }
+    }
+    public function addnewsletter(){
+        dd('hello');
+    }
+    public function proxynewsletter(Request $request)
+    {
+        $shop = auth()->user();
+        $email = $request->getContent();
+        $customers =[
+          "customer" => ["email" => $email]
+        ];
+        $tagapi = $shop->api()->rest('POST', 'admin/api/2021-10/customers.json', $customers);
+        dd($tagapi);
+        return response($tagapi);
+    }
+
+
 }

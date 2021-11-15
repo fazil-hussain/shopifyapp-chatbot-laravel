@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+
 
 </head>
 
@@ -300,27 +302,20 @@
                                                $optionval = explode("-",$splitt)[0];
 
                                             @endphp
-                                            <select name="avatorimg[]" id="selectoption-{{$key}}" class="demo-htmlselect">
-                                                <option value="facebook-0"
-                                                    data-imagesrc="https://i.imgur.com/XkuTj3B.png"
-                                                    data-description="Facebook">Facebook</option>
+                                            <select id="" class="cmbIdioma" name="dropdonw[]">
 
-                                                <option value="twitter-0"
-                                                    data-imagesrc="https://i.imgur.com/8ScLNnk.png"
-                                                    data-description="Twitter">Twitter</option>
-                                                <option value="whatsapp-0"
-                                                    data-imagesrc="{{asset('assets/img/whatsapp.png')}}"
-                                                    data-description="Whatsapp">Whatsapp</option>
-
+                                            <option value="whatsapp" {{ $optionval == 'whatsapp' ? 'selected' : ''}} data-id="0"  >Whatsapp</option>
+                                            <option value="twitter" {{ $optionval == 'twitter' ? 'selected' : ''}} data-id="0" >Twitter</option>
+                                            <option value="facebook" {{ $optionval == 'facebook' ? 'selected' : ''}} data-id="0">facebook</option>
                                             </select>
 
                                         </td>
                                         <td class="table_textarea">
-                                            <input type="text"  data-id="avatoragent-{{$key}}" class="form-control"  placeholder="Whatsapp" value="{{ $value->agent}}"
-                                                name="avatoragent[]" id="avatoragenid">
+                                            <input type="text"  data-id="avatoragent-{{$key}}" class="form-control avataragent"  placeholder="Whatsapp" value="{{ $value->agent}}"
+                                                name="avatoragent[]" id="">
                                         </td>
-                                        <td class="table_textarea"> <input data-id="avatorlink-{{$key}}" class="form-control" type="text" value="{{ $value->link}}"
-                                                placeholder="+923087506036" name="avatorlink[]" id="avatorlnkidd">
+                                        <td class="table_textarea"> <input data-id="avatorlink-{{$key}}" class="form-control avatarlink" type="text" value="{{ $value->link}}"
+                                                placeholder="+923087506036" name="avatorlink[]" id="">
                                         </td>
                                         <td class="table_icon btnDelete" data-id="delbtn-{{$key}}"><i class="fas fa-trash-alt"></i></td>
                                     </tr>
@@ -569,7 +564,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
     <script type="text/javascript" src="https://cdn.rawgit.com/prashantchaudhary/ddslick/master/jquery.ddslick.min.js">
     </script>
     @include('jscode');

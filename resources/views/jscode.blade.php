@@ -1,27 +1,27 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script id="faziljs">
     $(function() {
-        @if(count(json_decode($user->chatopt)))
-            var inputObjectsArray = [
-                @foreach (json_decode($user->chatopt) as $value)
-                    {
-                        avatar: "{{ $value->avatar }}" ,
-                        agent: "{{ $value->agent }}",
-                        link: "{{ $value->link }}"
-                    },
-                @endforeach
-            ];
-        @else
-            var inputObjectsArray = [
-                {
-                    avatar: 'whatsapp-0',
-                    agent: '',
-                    link : ''
-                }
-            ];
-        @endif
-
-
-
+        // @if(count(json_decode($user->chatopt)))
+        //     var inputObjectsArray = [
+        //         @foreach (json_decode($user->chatopt) as $value)
+        //             {
+        //                 avatar: "{{ $value->avatar }}" ,
+        //                 agent: "{{ $value->agent }}",
+        //                 link: "{{ $value->link }}"
+        //             },
+        //         @endforeach
+        //     ];
+        //     console.log(inputObjectsArray);
+        // @else
+        //     var inputObjectsArray = [
+        //         {
+        //             avatar: '',
+        //             agent: '',
+        //             link : ''
+        //         }
+        //     ];
+        // @endif
+        // console.log(inputObjectsArray);
 
             /*===============================================
                     Hide Show Div's
@@ -97,7 +97,7 @@
             /*===============================================
                     Social Avator Code
             ================================================*/
-        
+
             //----------Append New Avator Row------//
             var addavatorflag = false;
             var countapend = 0;
@@ -110,55 +110,91 @@
 
                         },
                         success: function (response) {
+                            console.log("response count:" +response)
                             var no = parseInt(response);
-                            countapend = no + 1;
+                            countapend = no + countapend;
+                            console.log("after calc:" + countapend);
+                            appenmorechatoptions();
                             flag = true;
                          }
                     });
 
                 } else {
-                    countapend = questno + 1;
+                    countapend = countapend + 1;
+                    console.log("else count:"+ countapend);
+                    appenmorechatoptions();
                 }
+            });
+
+            function appenmorechatoptions(){
                 $('#avatortable tr:last').before(`<tr class="tablerow">
                                             <td class="table_img">
-                                                <select class="demo-htmlselect" id="selectoption-`+ countapend+`">
-
-                                                    <option value="facebook-` + countapend + `" data-imagesrc="https://i.imgur.com/XkuTj3B.png"
-                                                        data-description="Facebook">Facebook</option>
-
-                                                    <option value="twitter-` + countapend + `"
-                                                        data-imagesrc="https://i.imgur.com/aDNdibj.png"
-                                                        data-description="Whatsapp">Twitter</option>
-
-
-                                                    <option value="whatsapp-` + countapend + `" selected
-                                                        data-imagesrc="{{asset('assets/img/whatsapp.png')}}"
-                                                        data-description="Whatsapp">Whatsapp</option>
-
-                                                </select>
+                                            <select id="" class="cmbIdioma" name="dropdonw[]">
+                                            <option value="whatsapp"  data-id="`+countapend+`">Whatsapp</option>
+                                            <option value="twitter" data-id="`+countapend+`">Twitter</option>
+                                            <option value="facebook" data-id="`+countapend+`">facebook</option>
+                                            </select>
                                             </td>
                                             <td class="table_textarea">
-                                                <input type="text"  data-id="avatoragent-`+ countapend +`"  class="form-control"  placeholder ="Whatsapp" value="" name="avatoragent" id="avatoragenid">
+                                                <input type="text"  data-id="avatoragent-`+ countapend +`"  class="form-control avataragent"  placeholder ="Whatsapp" value="" name="avatoragent[]" id="avatoragenid">
                                             </td>
-                                            <td class="table_textarea"> <input  data-id="avatorlink-`+ countapend +`" class="form-control" type="text" placeholder="+923087506036" name="avatorlink" id="avatorlnkidd">
+                                            <td class="table_textarea"> <input  data-id="avatorlink-`+ countapend +`" class="form-control avatarlink" type="text" placeholder="+923087506036" name="avatorlink[]" id="avatorlnkidd">
                                             </td>
                                             <td class="table_icon btnDelete" data-id="delbtn-`+ countapend +`" ><i class="fas fa-trash-alt"></i></td>
                                         </tr>`);
-
+                                        initialize();
                                         inputObjectsArray.push({
                                             avatar : "whatsapp-"+countapend,
                                             agent : "",
                                             link : ""
                                         });
-                initialize();
-            });
+                                        // console.log(inputObjectsArray);
+
+            }
             //-------------Delete Avator-----------------//
 
             $(".chat_table").on('click', '.btnDelete', function () {
-                countapend = questno - 1;
+                countapend = countapend - 1;
                     $(this).closest('tr').remove();
                     var index = $(this).attr('data-id').split('-')[1];
                     inputObjectsArray.splice(index,1);
+
+                    for (let index = 0; index <= countapend; index++) {
+                    // console.log($('.quest')[index].innerHTML='a');
+
+                    $($('.avataragent')[index]).attr("data-id","avatoragent-"+index);
+                    $($('.avatarlink')[index]).attr("data-id","avatoragent-"+index);
+                    $($('.dd-container')[index]).attr("id","selectoption-"+index);
+
+                    // console.log($('.dd-select'));
+                    var optionn = $($('.dd-options')[index]).find('.dd-option')
+                    for (let opt = 0; opt < optionn.length; opt++) {
+
+                        var optval = ($(optionn[opt]).find('.dd-option-value').val()).split('-')[0];
+                        $($('.dd-select')[opt]).find('.dd-selected-value').attr('value',optval+"-"+index)
+                        console.log(optval);
+                        // console.log($(optionn[opt]).find('.dd-selected-value'));
+
+                        ($(optionn[opt]).find('.dd-option-value')).attr('value',optval+"-"+index);
+                        // ($(optionn[opt]).find('.dd-selected-value')).attr('value',optval+"-"+index);
+                        // $(optionn[opt]).find('.dd-selected-value').attr("value",optval+"-"+index)
+                        // if(optval == "facebook") {
+                        //     $(optionn[opt]).find('.dd-option-value').val(optval+"-"+index)
+                        //     console.log($(optionn[opt]).find('.dd-option-value').val(optval+"-"+index))
+                        // }
+                        // else if(optval == "twitter") {
+                        //     $(optionn[opt]).find('.dd-option-value').val(optval+"-"+index)
+                        //     console.log($(optionn[opt]).find('.dd-option-value').val(optval+"-"+index))
+
+                        // }
+                        // else if(optval == "whatsapp") {
+                        //     $(optionn[opt]).find('.dd-option-value').val(optval+"-"+index)
+                        //     console.log($(optionn[opt]).find('.dd-option-value').val(optval+"-"+index))
+
+                        // }
+                    }
+                }
+                    // console.log(inputObjectsArray);
                 });
             //-----------image Dropdown avator------------//
             // $('#savechatavatordata').click(function (e) {
@@ -173,52 +209,87 @@
 
             initialize()
 
-            @foreach (json_decode($user->chatopt) as $key => $value)
-                var avatarr = "{{ $value->avatar}}";
-                var i = {{ $key}};
-                var avatarval = avatarr.split('-')[0];
-                console.log(i);
-                if(avatarval == "facebook"){
-                    $( '#selectoption-'+i ).ddslick( 'select', { index: 0, disableTrigger: true } );
-                }
-                else if(avatarval == "twitter"){
-                    $( '#selectoption-'+i ).ddslick( 'select', { index: 1, disableTrigger: true } );
-                }
-                else if(avatarval == "whatsapp"){
-                    $( '#selectoption-'+i ).ddslick( 'select', { index: 2, disableTrigger: true } );
-                }
+            // @foreach (json_decode($user->chatopt) as $key => $value)
+            //     var avatarr = "{{ $value->avatar}}";
+            //     var i = {{ $key}};
+            //     var avatarval = avatarr.split('-')[0];
+            //     console.log(i);
+            //     if(avatarval == "facebook"){
+            //         $( '#selectoption-'+i ).ddslick( 'select', { index: 0, disableTrigger: true } );
+            //     }
+            //     else if(avatarval == "twitter"){
+            //         $( '#selectoption-'+i ).ddslick( 'select', { index: 1, disableTrigger: true } );
+            //     }
+            //     else if(avatarval == "whatsapp"){
+            //         $( '#selectoption-'+i ).ddslick( 'select', { index: 2, disableTrigger: true } );
+            //     }
 
-            @endforeach
+            // @endforeach
 
 
             function initialize() {
-                $('.demo-htmlselect').ddslick({
-                    onSelected: function (selectedData) {
-                        console.log(selectedData);
-                        var row = document.querySelectorAll('.tablerow')[selectedData.selectedData.value
-                            .split('-')[1]];
-                        var avatorlink  = row.querySelector("input[id=avatorlnkidd]")
-                        var avatoragnet = row.querySelector("input[id=avatoragenid]")
 
-                        if (selectedData.selectedData.value.split('-')[0] == 'facebook') {
+                $(".cmbIdioma").select2({
+                    templateResult: function (idioma) {
+                        var image = "{{ asset('assets/img/')}}";
+                    var $span = $('<span><img height="30pg" width="30px" src="'+image+'/'+idioma.id+'.png"/>'+idioma.text+'</span>');
+                    return $span;
+                    },
+                    templateSelection: function (idioma) {
+                        var image = "{{ asset('assets/img/')}}";
+                    var $span = $('<span><img height="30pg" width="30px" src="'+image+'/'+idioma.id+'.png"/>'+idioma.text+'</span>');
+                    return $span;
+                    }
+                });
+
+                $(".cmbIdioma").on('change', function(){
+                    row = $(this).find('option:selected').attr('data-id');
+                    console.log(row);
+                    var avatarval = $(this).val();
+                    var avatorlink = $('.avatarlink')[row];
+                    var avatoragnet =  $('.avataragent')[row];
+
+                        if (avatarval == 'facebook') {
                             avatoragnet.placeholder = "Facebook"
                             avatorlink.placeholder = "Enter Facebook Link"
-                        }
-                        if (selectedData.selectedData.value.split('-')[0] == 'whatsapp') {
+                        }else if (avatarval == 'whatsapp') {
                             avatoragnet.placehoder = "WhatsApp"
                             avatorlink.placeholder = "+923087506036"
-                        }
-                        if (selectedData.selectedData.value.split('-')[0] == 'twitter') {
+                        }else if (avatarval == 'twitter') {
                             avatoragnet.placeholder = "Twitter"
                             avatorlink.placeholder = "Enter Twitter Link"
                         }
 
-                        if(typeof(inputObjectsArray[selectedData.selectedData.value.split('-')[1]])  != 'undefined'){
-                            inputObjectsArray[selectedData.selectedData.value.split('-')[1]].avatar = selectedData.selectedData.value;
-                        }
-
-                    }
                 });
+
+                // $('.demo-htmlselect').ddslick({
+                //     onSelected: function (selectedData) {
+                //         // console.log(selectedData);
+                //         var row = document.querySelectorAll('.tablerow')[selectedData.selectedData.value
+                //             .split('-')[1]];
+                //         var avatorlink  = row.querySelector("input[id=avatorlnkidd]")
+                //         var avatoragnet = row.querySelector("input[id=avatoragenid]")
+
+                //         if (selectedData.selectedData.value.split('-')[0] == 'facebook') {
+                //             avatoragnet.placeholder = "Facebook"
+                //             avatorlink.placeholder = "Enter Facebook Link"
+                //         }
+                //         if (selectedData.selectedData.value.split('-')[0] == 'whatsapp') {
+                //             avatoragnet.placehoder = "WhatsApp"
+                //             avatorlink.placeholder = "+923087506036"
+                //         }
+                //         if (selectedData.selectedData.value.split('-')[0] == 'twitter') {
+                //             avatoragnet.placeholder = "Twitter"
+                //             avatorlink.placeholder = "Enter Twitter Link"
+                //         }
+
+                //         if(typeof(inputObjectsArray[selectedData.selectedData.value.split('-')[1]])  != 'undefined'){
+                //             inputObjectsArray[selectedData.selectedData.value.split('-')[1]].avatar = selectedData.selectedData.value;
+                //         }
+
+
+                //     }
+                // });
 
             }
 

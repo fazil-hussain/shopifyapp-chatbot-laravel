@@ -8,13 +8,17 @@ class ScripttagController extends Controller
 {
     public function addscript()
     {
-        $shop = auth()->user();
-        $snippet = asset('scripttags/boot.js');
-        // Data to pass to our rest api request
-        $array = array('script_tag' => array('event' => 'onload', 'src' => $snippet));
+        dd('heloo');
+        // $shop = auth()->user();
+        // $snippet = asset('scripttags/subscribe.js');
+        // // Data to pass to our rest api request
+        // $array = array('script_tag' => array('event' => 'onload', 'src' => $snippet));
 
-        $tagapi = $shop->api()->rest('POST', '/admin/api/2020-04/script_tags.json', $array);
-        return response('tag added');
+        // //  $snippet = asset('scripttags/boot.js');
+        // // $array = array('script_tag' => array('event' => 'onload', 'src' => $snippet));
+
+        // $tagapi = $shop->api()->rest('POST', '/admin/api/2020-04/script_tags.json', $array);
+        // return response('tag added');
     }
 
     public function allscripttags()

@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
 ::-webkit-scrollbar {
   width: 5px;
-	
+
 }
 ::-webkit-scrollbar-track {
   background: #fff;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D4D4D4; 
+  background: #D4D4D4;
 	border-radius: 10px;
 }
 nav.navbar.navbar-dark.align-items-start.sidebar.sidebar-dark.accordion.bg-gradient-primary.p-0 {
@@ -289,7 +289,7 @@ ul.nav.nav-tabs.top_tabs {
     padding: 20px;
 }
 .auto_head_width{
-	width: 75%;	
+	width: 75%;
 }
 .a_img_w{
 	width: 10%;
@@ -379,7 +379,7 @@ ul.nav.nav-tabs.top_tabs {
     color: #3e3e3e !important;
 }
 .auto_btn_width{
-	width: 25%;	
+	width: 25%;
 }
 .auto_btn {
 	width: 25%;
@@ -425,7 +425,7 @@ ul.nav.nav-tabs.top_tabs {
 .srch_bar {
   display: inline-block;
   text-align: right;
-  width: 60%; 
+  width: 60%;
 }
 .headind_srch {
     padding: 15px 20px 10px 10px;
@@ -547,8 +547,8 @@ ul.nav.nav-tabs.top_tabs {
     background: #fbfbfb;
     border-right: 1px solid #dadada;
 }
-.chat_option{ 
-	padding:10px 15px 10px 5px; 
+.chat_option{
+	padding:10px 15px 10px 5px;
 	height: 55px;
 	border-bottom:1px solid #c4c4c4;
 	display: flex;
@@ -1596,34 +1596,34 @@ td.table_textarea {
 }
 .edit_input {
     padding: 20px 5px 15px;
-}	
+}
 .custom-control-label p {
     font-size: 11px;
     margin-top: 5px;
-}	
+}
 .img_upload input {
     width: 70%;
     font-size: 11px;
-}	
+}
 .edit_input textarea {
     font-size: 10px;
-}	
+}
 .whatsapp_preview {
     width: 90%;
     margin-left: 5%;
-}	
+}
 .col-md-6.auto_img.pr-0.pre_width.marg {
     padding-left: 0px !important;
 }
 .edit_input h3 {
     font-size: 13px;
-}	
+}
 .select_input {
     width: 45%;
 }
 .edit_select {
     width: 45%;
-}	
+}
 .select_btn {
     width: 7%;
 }
@@ -1651,10 +1651,10 @@ td.table_textarea {
 .col-md-6.chat_screen {
     flex: 0 0 45%;
     max-width: 45%;
-}	
+}
 .chat_list {
     padding: 5px 5px;
-}	
+}
 .col-md-3.user_info {
 	flex: 0 0 25%;
     max-width: 25%;
@@ -1667,7 +1667,7 @@ td.table_textarea {
 }
 .c_list_time p {
     font-size: 9px;
-}	
+}
 .c_list_name p {
     font-size: 10px;
 }
@@ -1686,7 +1686,7 @@ td.table_textarea {
 }
 .user_profile p {
     font-size: 10px;
-}	
+}
 .user_addres_info ul li span {
     font-size: 11px;
 }
@@ -1698,7 +1698,7 @@ td.table_textarea {
 }
 .user_other_info {
     padding: 15px 5px;
-}	
+}
 .user_other_info ul li span {
     font-size: 11px;
 }
@@ -1724,7 +1724,7 @@ td.table_textarea {
 }
 .custom-switch label {
     color: green;
-}	
+}
 }
 
 
@@ -1732,7 +1732,7 @@ td.table_textarea {
 .user_profile {
     height: 30%;
     padding: 5px 15px;
-}	
+}
 .user_profile img {
     width: 13%;
 }
@@ -1751,7 +1751,7 @@ td.table_textarea {
 }
 .user_profile {
     height: 30%;
-}	
+}
 .user_profile img {
     width: 15%;
 }
@@ -1770,7 +1770,7 @@ td.table_textarea {
 }
 .user_profile {
     height: 25%;
-}	
+}
 .user_profile img {
     width: 15%;
 }
@@ -2965,7 +2965,7 @@ audio:focus{
 	position: relative;
 }
 .contact_name_footer p{
-	font-size: 13px; 
+	font-size: 13px;
 	color: #fff;
 	padding: 5px;
 	margin: 0px;
@@ -3571,7 +3571,7 @@ button.close2:focus {
 .m_footer_2{
 	background: #000000;
 	height: 50px;
-	
+
 }
 
 /**********label***********/
@@ -3854,7 +3854,7 @@ span.spab_line {
 	text-align: center;
 	padding: 20px 0px;
 }
-.send_chat{    
+.send_chat{
 	padding: 5px 10px;
     font-size: 13px;
     background: linear-gradient(180deg,#fff,#f9fafb);
@@ -3864,7 +3864,7 @@ span.spab_line {
     margin-right: 10px;
     border-radius: 3px !important;
 }
-.take_order{    
+.take_order{
 	padding: 5px 10px;
     font-size: 13px;
     background: #00bf55;
@@ -4033,7 +4033,7 @@ span.spab_line {
     border-radius: 3px !important;
 	margin-bottom: 10px;
 	font-weight: 500;
-	
+
 }
 .send_chat_2:focus{
 	outline: none;
@@ -4173,7 +4173,7 @@ span.spab_lines {
 	text-align: center;
 	padding: 20px 0px;
 }
-.send_chat-3{    
+.send_chat-3{
 	padding: 5px 10px;
     font-size: 13px;
     background: linear-gradient(180deg,#fff,#f9fafb);
@@ -4183,7 +4183,7 @@ span.spab_lines {
     margin-right: 10px;
     border-radius: 3px !important;
 }
-.take_order-3{    
+.take_order-3{
 	padding: 5px 10px;
     font-size: 13px;
     background: #00bf55;
@@ -5112,11 +5112,11 @@ form.tool_faq_form {
     content: '★ ';
 }
 .rate > input:checked ~ label {
-    color: #ffc700;    
+    color: #ffc700;
 }
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
-    color: #ffc700;  
+    color: #ffc700;
 }
 .rate > input:checked + label:hover,
 .rate > input:checked + label:hover ~ label,
@@ -5124,4 +5124,18 @@ form.tool_faq_form {
 .rate > input:checked ~ label:hover ~ label,
 .rate > label:hover ~ input:checked ~ label {
     color: #ffc700;
+}
+.select2-selection__rendered {
+    line-height: 56px !important;
+    width: 120px;
+}
+.select2-container .select2-selection--single {
+    height: 56px !important;
+    width: 120px;
+
+}
+.select2-selection__arrow {
+    height: 56px !important;
+    width: 120px;
+
 }
